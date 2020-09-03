@@ -1645,7 +1645,6 @@ class LenChecker(checkers.BaseChecker):
             parent = node.parent
             while isinstance(parent, astroid.BoolOp):
                 parent = parent.parent
-
             # we're finally out of any nested boolean operations so check if
             # this len() call is part of a test condition
             if _is_test_condition(node, parent):

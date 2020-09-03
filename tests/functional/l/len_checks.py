@@ -102,3 +102,18 @@ def github_issue_1331_v4(*args):
 
 b = bool(len(z)) # [len-as-condition]
 c = bool(len('TEST') or 42) # [len-as-condition]
+
+
+def github_issue_1879():
+
+    class ClassWithBool:
+        def __bool__(self):
+            return True
+
+    class ClassWithoutBool(list):
+        pass
+
+    has_bool = ClassWithBool()
+    assert len(has_bool)
+    has_no_bool = ClassWithoutBool
+    assert len(has_no_bool)  # [len-as-condition]
